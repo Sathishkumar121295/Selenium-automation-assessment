@@ -8,6 +8,15 @@ on:
     branches: [ master ]
 
   workflow_dispatch:
+    inputs:
+      test_group:
+        description: 'Select test group'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - regression
 
 jobs:
   test:
@@ -25,7 +34,7 @@ jobs:
           cache: maven
 
       - name: Run Selenium tests
-        run: mvn clean test -Dheadless=true
+        run: mvn clean test -Dgroups=${{ inputs.test_group }} -Dheadless=true
 
       - name: Upload test reports
         if: always()
