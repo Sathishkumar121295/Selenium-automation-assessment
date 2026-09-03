@@ -32,7 +32,7 @@ public class Logintest extends Baseclass {
 	       Assert.assertTrue(p.istitledisplayed(),"Product page is not displayed");
 	       
 	    logger.info("login successful - product is displayed"); 
-	    Assert.assertTrue(false, "Intentional failure for GitHub Actions test");
+	    
 }
 	   @Test(groups= {"smoke"})
 	   public void invalidlogin() throws IOException {
