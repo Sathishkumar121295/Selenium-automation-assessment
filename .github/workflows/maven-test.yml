@@ -22,5 +22,5 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run Selenium tests
-        run: mvn clean test
+		  - name: Run Selenium tests
+		    run: mvn clean test -Dheadless=true

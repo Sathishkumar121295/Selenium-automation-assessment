@@ -14,7 +14,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.chrome.ChromeDriver;
-	import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 	import org.testng.annotations.AfterMethod;
 	import org.testng.annotations.BeforeMethod;
 
@@ -32,10 +33,22 @@ import org.openqa.selenium.WebDriver;
 
 	        String browser = Configreader.getProperty("browser");
 	        String url = Configreader.getProperty("qa.url");
-
+	        String headless = System.getProperty("headless",
+	                Configreader.getProperty("headless"));
 	        if (browser.equalsIgnoreCase("chrome")) {
 
-	            driver = new ChromeDriver();
+	            ChromeOptions options = new ChromeOptions();
+
+	            if (headless.equalsIgnoreCase("true")) {
+
+	                options.addArguments("--headless=new");
+	                options.addArguments("--no-sandbox");
+	                options.addArguments("--disable-dev-shm-usage");
+	                options.addArguments("--window-size=1920,1080");
+
+	            }
+
+	            driver = new ChromeDriver(options);
 
 	        } else if (browser.equalsIgnoreCase("firefox")) {
 
@@ -44,12 +57,14 @@ import org.openqa.selenium.WebDriver;
 	        } else {
 
 	            throw new IllegalArgumentException("Browser not supported: " + browser);
+
 	        }
 
-	        driver.manage().window().maximize();
-
+	        driver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1080));
 	        driver.get(url);
+
 	        System.out.println("===== DRIVER CREATED =====");
+	        
 	    }
 	    public void screenshot(String screenshotname) throws IOException {
 	    	TakesScreenshot t=(TakesScreenshot)driver;
