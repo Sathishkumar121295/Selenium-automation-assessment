@@ -1,0 +1,16 @@
+# Maven
+target/
+
+# TestNG reports
+test-output/
+
+# Screenshots
+Screenshot/
+
+# Logs
+logs/
+
+# Eclipse
+.classpath
+.project
+.settings/
