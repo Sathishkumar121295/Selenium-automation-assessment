@@ -38,7 +38,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 	        if (browser.equalsIgnoreCase("chrome")) {
 
 	            ChromeOptions options = new ChromeOptions();
-
+	            options.setExperimentalOption("prefs",java.util.Map.of("profile.password_manager_leak_detection", false));
 	            if (headless.equalsIgnoreCase("true")) {
 
 	                options.addArguments("--headless=new");

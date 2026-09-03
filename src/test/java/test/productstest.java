@@ -8,7 +8,7 @@ import pages.Login;
 import pages.Products;
 
 public class productstest extends Baseclass{
-	@Test(groups= {"regression"})
+	@Test(groups= {"smoke","regression"})
 	public void product() {
 		Login l = new Login(driver);
 		 l.enterusername("standard_user");
