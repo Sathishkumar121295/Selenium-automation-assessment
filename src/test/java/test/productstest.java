@@ -22,17 +22,22 @@ public class productstest extends Baseclass{
 	        p.Productclick();
 	        String price = p.productprice();
 
-	        System.out.println("Selected product price: " + price);
+	        logger.info("Selected product price: " + price);
 	        p.itemtocart();
 	        p.carticonclick();
 	        Assert.assertTrue(p.productcheck(), "Added product is not in the cart");
-	        System.out.println("Product added to the cart");
+	        logger.info("Product added to the cart");
 	        String cartprice = p.cartproductprice();
 	        Assert.assertEquals(cartprice, price,"product price invalid");
-	        System.out.println("Product price is validated successfully");
+	        logger.info("Product price is validated successfully");
 	        p.backtoshop();
 	        Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/inventory.html", "User is not redirected to inventorypage");
-            System.out.println("user redirected to inventorypage");
+            logger.info("user redirected to inventorypage");
+            Assert.assertTrue(p.isAddToCartNotDisplayed(),"Add to Cart button is still displayed for the selected product");
+            logger.info("Add to cart is not displayed on the added product");
+            Assert.assertTrue(p.isProductAdded(),"Product is not added to cart");
+
+            logger.info("Product is already added to cart");
 	        p.openmenu();
 	        p.logout();
 	   

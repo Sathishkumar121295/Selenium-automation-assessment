@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,10 +30,14 @@ public class Products {
          private WebElement prodprice;
          @FindBy(xpath="//div[@class='inventory_item_price']")
          private WebElement cartpr;
+         @FindBy(id="add-to-cart-sauce-labs-backpack")
+         private WebElement addToCartBackpack;
          @FindBy(xpath="//div//button[text()='Open Menu']")
          private WebElement openmenu;
          @FindBy(xpath="//a[text()='Logout']")
          private WebElement log;
+         @FindBy(xpath="(//button[contains(@id,'remove')])[1]")
+         private WebElement removeButton;
          public boolean istitledisplayed() {
         	 return producttitle.isDisplayed();
          }
@@ -57,10 +62,19 @@ public class Products {
          public String cartproductprice() {
         	 return wait.Waitforvisibility(cartpr).getText();
          }
+         public boolean isProductAdded() {
+        	    return wait.Waitforvisibility(removeButton).isDisplayed();
+        	}
+         public boolean isAddToCartNotDisplayed() {
+        	    return driver.findElements(By.id("add-to-cart-sauce-labs-backpack")).isEmpty();
+        	}
          public void openmenu() {
         	 wait.Waitforvisibility(openmenu).click();
          }
          public void logout() {
         	 wait.waitforelementtobeclickable(log).click();
+        	 
          }
+         
 }
+            

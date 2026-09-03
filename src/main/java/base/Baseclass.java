@@ -16,7 +16,8 @@ import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-	import org.testng.annotations.AfterMethod;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.testng.annotations.AfterMethod;
 	import org.testng.annotations.BeforeMethod;
 
 	import utils.Configreader;
@@ -31,7 +32,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 	        Configreader.loadProperties();
 
-	        String browser = Configreader.getProperty("browser");
+	        String browser = System.getProperty( "browser",Configreader.getProperty("browser"));
 	        String url = Configreader.getProperty("qa.url");
 	        String headless = System.getProperty("headless",
 	                Configreader.getProperty("headless"));
@@ -50,9 +51,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 	            driver = new ChromeDriver(options);
 
-	        } else if (browser.equalsIgnoreCase("firefox")) {
+	        }  else if (browser.equalsIgnoreCase("firefox")) {
 
-	            driver = new FirefoxDriver();
+	            FirefoxOptions options = new FirefoxOptions();
+
+	            if (headless.equalsIgnoreCase("true")) {
+	                options.addArguments("-headless");
+	            }
+
+	            driver = new FirefoxDriver(options);
+
+	        
 
 	        } else {
 
