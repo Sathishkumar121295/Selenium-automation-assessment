@@ -5,15 +5,15 @@ The framework automates functional scenarios for the SauceDemo application and f
 The framework is designed with reusable components, configuration management, test-data management, logging, screenshot capture and CI/CD integration using GitHub Actions.
 
 2. Technology Stack
-Java 17 
-Selenium WebDriver 4.35.0 
-TestNG 7.11.0 
-Maven 
-Apache POI 
-Log4j2 
-Extent Reports 
-Git & GitHub 
-GitHub Actions 
+Java 17 
+Selenium WebDriver 4.35.0 
+TestNG 7.11.0 
+Maven 
+Apache POI 
+Log4j2 
+Extent Reports 
+Git & GitHub 
+GitHub Actions 
 
 
 
@@ -67,55 +67,55 @@ Execution flow:
 Test Class → Page Object Class → Base Class / Utilities → Selenium WebDriver → SauceDemo Application
 Baseclass
 The Baseclass is responsible for:
-WebDriver initialization 
-Browser configuration 
-Environment configuration 
-Headless execution 
-Opening the application URL 
-Common browser setup 
+WebDriver initialization 
+Browser configuration 
+Environment configuration 
+Headless execution 
+Opening the application URL 
+Common browser setup 
 Page Classes
 The framework contains:
-Login.java 
-Products.java 
+Login.java 
+Products.java 
 Page classes contain locators and reusable page-level actions.
 Utility Classes
-Configreader.java – Reads configuration values 
-Excelreader.java – Reads test data from Excel 
-Waitutils.java – Handles explicit waits 
-Testlistener.java – Handles test execution events and failure screenshots 
+Configreader.java – Reads configuration values 
+Excelreader.java – Reads test data from Excel 
+Waitutils.java – Handles explicit waits 
+Testlistener.java – Handles test execution events and failure screenshots 
 Test Classes
-Logintest.java 
-productstest.java 
+Logintest.java 
+productstest.java 
 
 5. Page Object Model
 The framework uses Page Object Model to separate page locators and page actions from test logic.
 Login Page
 The Login page contains reusable methods for:
-Entering username 
-Entering password 
-Clicking Login 
-Validating login error messages 
+Entering username 
+Entering password 
+Clicking Login 
+Validating login error messages 
 Products Page
 The Products page contains reusable methods for:
-Validating Products page 
-Selecting a product 
-Reading product price 
-Adding product to cart 
-Opening cart 
-Validating product in cart 
-Validating cart price 
-Returning to the Products page 
-Opening menu 
-Logging out 
-Validating the Add to Cart button state 
+Validating Products page 
+Selecting a product 
+Reading product price 
+Adding product to cart 
+Opening cart 
+Validating product in cart 
+Validating cart price 
+Returning to the Products page 
+Opening menu 
+Logging out 
+Validating the Add to Cart button state 
 This improves maintainability because page locator changes can be handled within the respective Page Object.
 
 6. Reusable Components and Utilities
 Waitutils
 Explicit waits are implemented using Waitutils.
 The framework uses waits for conditions such as:
-Element visibility 
-Element clickability 
+Element visibility 
+Element clickability 
 Hard-coded waits are avoided wherever possible.
 Configreader
 Configuration values are maintained in:
@@ -141,8 +141,8 @@ This allows the same framework to be executed with different browser and executi
 
 8. Browser Configuration
 The framework supports:
-Chrome 
-Firefox 
+Chrome 
+Firefox 
 Browser selection is controlled through configuration.
 Example:
 browser=chrome
@@ -161,33 +161,33 @@ Login test data is maintained separately in:
 src/test/resources/test data.xlsx
 The Excelreader utility is used to read the required test data.
 The login scenarios include:
-Valid username and password 
-Invalid username 
-Missing password 
-Missing username 
+Valid username and password 
+Invalid username 
+Missing password 
+Missing username 
 This approach keeps test data separate from the test implementation.
 
 11. Test Scenarios Covered
 Login Scenarios
-1.Successful login with valid credentials 
-2.Login with invalid credentials 
-3.Validation of login error message 
-4.Missing password validation 
-5.Missing username validation 
+Successful login with valid credentials 
+Login with invalid credentials 
+Validation of login error message 
+Missing password validation 
+Missing username validation 
 Product / Business Flow
-1.Login with valid credentials 
-2.Validate Products page 
-3.Select a product 
-4.Capture product price 
-5.Add product to cart 
-6.Navigate to cart 
-7.Validate product is present in cart 
-8.Validate product price 
-9.Return to Products page 
-10.Validate selected product no longer displays Add to Cart 
-11.Validate product remains added to cart 
-12.Logout 
-13.Validate user is redirected to the login page 
+Login with valid credentials 
+Validate Products page 
+Select a product 
+Capture product price 
+Add product to cart 
+Navigate to cart 
+Validate product is present in cart 
+Validate product price 
+Return to Products page 
+Validate selected product no longer displays Add to Cart 
+Validate product remains added to cart 
+1.Logout 
+2.Validate user is redirected to the login page 
 
 12. TestNG Groups
 TestNG groups are used to categorize test cases.
@@ -219,9 +219,9 @@ mvn clean test -Dgroups=smoke -Dbrowser=chrome -Dheadless=true
 14. Individual Test Execution
 Individual tests can be executed from the IDE using TestNG.
 For example:
-Right-click Logintest.java 
-Select Run As 
-Select TestNG Test 
+Right-click Logintest.java 
+Select Run As 
+Select TestNG Test 
 The same approach can be used for productstest.java.
 
 15. Complete Test Suite Execution
@@ -234,13 +234,13 @@ The Maven Surefire plugin is configured to execute the TestNG suite.
 16. Assertions and Validations
 TestNG assertions are used to validate expected application behaviour.
 Examples include:
-Product page is displayed 
-Login error message is displayed 
-Product is added to cart 
-Product price matches the selected product price 
-User is redirected to the Products page 
-Add to Cart button is not displayed for the selected product after it has been added 
-User is successfully logged out 
+Product page is displayed 
+Login error message is displayed 
+Product is added to cart 
+Product price matches the selected product price 
+User is redirected to the Products page 
+Add to Cart button is not displayed for the selected product after it has been added 
+User is successfully logged out 
 Example:
 Assert.assertTrue(p.istitledisplayed(), "Product page is not displayed");
 
@@ -248,20 +248,20 @@ Assert.assertTrue(p.istitledisplayed(), "Product page is not displayed");
 The framework uses explicit waits through:
 Waitutils.java
 Examples include waiting for:
-Element visibility 
-Element clickability 
+Element visibility 
+Element clickability 
 This reduces synchronization issues and avoids unnecessary hard-coded waits.
 
 18. Logging
 Log4j2 is used for logging.
 The framework logs important execution information such as:
-Test data being executed 
-Login success 
-Login failure validation 
-Product selection 
-Product price validation 
-Cart validation 
-Logout validation 
+Test data being executed 
+Login success 
+Login failure validation 
+Product selection 
+Product price validation 
+Cart validation 
+Logout validation 
 Example log messages:
 Testing row: 2
 login error displayed
@@ -286,11 +286,11 @@ For example, an unsupported browser results in an exception indicating that the 
 Maven Surefire generates test execution reports under:
 target/surefire-reports
 The report provides execution information including:
-Number of tests executed 
-Passed tests 
-Failed tests 
-Skipped tests 
-Failure details 
+Number of tests executed 
+Passed tests 
+Failed tests 
+Skipped tests 
+Failure details 
 Extent Reports are also included in the framework for HTML-based reporting.
 
 22. CI/CD - GitHub Actions
@@ -298,12 +298,12 @@ GitHub Actions is used to execute the automation framework in a CI/CD environmen
 The workflow is located at:
 .github/workflows/maven-test.yml
 The CI/CD process performs the following steps:
-1.Checkout the source code 
-2.Set up Java 17 
-3.Configure Maven caching 
-4.Execute Selenium tests 
-5.Run tests in headless mode 
-6.Upload test reports as artifacts 
+Checkout the source code 
+Set up Java 17 
+Configure Maven caching 
+Execute Selenium tests 
+Run tests in headless mode 
+Upload test reports as artifacts 
 
 23. CI/CD Test Execution
 The pipeline can execute the required TestNG group.
@@ -315,26 +315,26 @@ The test group can therefore be selected through the Maven command used in the G
 
 24. CI/CD Triggers
 The GitHub Actions workflow is configured to execute on:
-Push to the master branch 
-Pull request to the master branch 
-Manual workflow execution 
+Push to the master branch 
+Pull request to the master branch 
+Manual workflow execution 
 Test reports can be uploaded as GitHub Actions artifacts for later review.
 
 25. Assumptions
-SauceDemo is used as the publicly available demo application. 
-Test credentials are used for automation purposes. 
-Test data is maintained in an Excel file. 
-Chrome and Firefox are supported browsers. 
-CI/CD execution uses headless browser mode. 
-The framework is currently configured for the QA environment. 
-Internet access is required to access the SauceDemo application. 
+SauceDemo is used as the publicly available demo application. 
+Test credentials are used for automation purposes. 
+Test data is maintained in an Excel file. 
+Chrome and Firefox are supported browsers. 
+CI/CD execution uses headless browser mode. 
+The framework is currently configured for the QA environment. 
+Internet access is required to access the SauceDemo application. 
 
 26. Known Limitations
-The current framework covers the defined SauceDemo scenarios and is not intended to cover every application feature. 
-Test data is currently maintained using Excel. 
-The current browser support is Chrome and Firefox. 
-CI/CD execution is currently configured using GitHub Actions. 
-The framework can be further enhanced with parallel execution, additional page objects, additional test data sources and expanded automation coverage. 
+The current framework covers the defined SauceDemo scenarios and is not intended to cover every application feature. 
+Test data is currently maintained using Excel. 
+The current browser support is Chrome and Firefox. 
+CI/CD execution is currently configured using GitHub Actions. 
+The framework can be further enhanced with parallel execution, additional page objects, additional test data sources and expanded automation coverage. 
 
 27. Repository
 GitHub Repository:
